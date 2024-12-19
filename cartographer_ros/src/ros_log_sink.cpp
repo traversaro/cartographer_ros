@@ -33,10 +33,12 @@ const char* GetBasename(const char* filepath) {
   return base ? (base + 1) : filepath;
 }
 
+#if defined(ROS_CARTOGRAPHER_GLOG_GE_070)
 std::chrono::system_clock::time_point ConvertTmToTimePoint(const std::tm& tm) {
     std::time_t timeT = std::mktime(const_cast<std::tm*>(&tm)); // Convert std::tm to time_t
     return std::chrono::system_clock::from_time_t(timeT);      // Convert time_t to time_point
 }
+#endif
 
 }  // namespace
 
